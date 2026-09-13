@@ -27,6 +27,24 @@ const builtinExtensions = {
     faceSensing: () => require('../extensions/scratch3_face_sensing'),
     localauth: () => require('../extensions/opusmod_localauth')
 };
+const loadExternalScript = (url) => {
+    return new Promise((resolve, reject) => {
+        if (!url) return reject('No URL provided');
+        const script = document.createElement('script');
+        script.src = url;
+        script.onload = () => {
+            // Looks for the global Scratch extension object that developers register
+            if (window.Scratch && window.Scratch.extensions) {
+                resolve(window.Scratch.extensions);
+            } else {
+                resolve();
+            }
+        };
+        script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
+        document.head.appendChild(script);
+    });
+};
+
 
 /**
  * @typedef {object} ArgumentInfo - Information about an extension block argument
