@@ -1,0 +1,31 @@
+name: Deploy Scratch Mod
+on:
+  push:
+    branches: [ "main", "master", "develop" ] # Triggers whenever you save changes on your default branch
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install All Dependencies
+        run: npm install
+
+      - name: Build Mono-Repo Editor
+        run: npm run build
+        
+      - name: Deploy Build Folder to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # Creates or updates this hidden hosting branch
+          folder: packages/scratch-gui/build # Targets the compiled site output inside the mono-repo
