@@ -413,4 +413,11 @@ export default [
         ),
         helpLink: 'https://scratch.mit.edu/wedo'
     }
+    {
+        name: 'LocalAuth', // The name displayed in the library
+        extensionId: 'localauth', 
+        collaborator: 'OpusMod Extensions',
+        description: 'This is my awesome new block extension!',
+        featured: true
+    }
 ];
