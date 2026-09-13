@@ -420,4 +420,11 @@ export default [
         description: 'This is my awesome new block extension!',
         featured: true
     }
+    {
+        name: 'Load Custom URL Extension',
+        extensionId: 'customUrlLoader',
+        collaborator: 'OpusMod Extensions',
+        description: 'Paste a web URL pointing to a JavaScript extension file to load it instantly.',
+        featured: true
+    }
 ];
