@@ -25,8 +25,10 @@ const builtinExtensions = {
     boost: () => require('../extensions/scratch3_boost'),
     gdxfor: () => require('../extensions/scratch3_gdx_for'),
     faceSensing: () => require('../extensions/scratch3_face_sensing'),
-    localauth: () => require('../extensions/opusmod_localauth')
+    localauth: () => require('../extensions/opusmod_localauth'),
+    customUrlLoader: () => loadExternalScript(prompt("Enter the direct URL of the JavaScript extension file:"))
 };
+
 const loadExternalScript = (url) => {
     return new Promise((resolve, reject) => {
         if (!url) return reject('No URL provided');
